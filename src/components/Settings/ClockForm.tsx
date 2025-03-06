@@ -1,5 +1,6 @@
-import { FC } from "react"
+import React, { useState, FC } from "react"
 import { Clock } from "../../models/Clock"
+import clocksData from "../../utils/clocksData"
 
 interface ClockFormProps {
 	clock: Clock
@@ -7,23 +8,52 @@ interface ClockFormProps {
 }
 
 const ClockForm: FC<ClockFormProps> = ({ clock, onUpdateClock }) => {
-	return (
-		<div>
-			<div>Time Zone</div>
-			<div>{clock.city}</div>
+	const [timeZone, setTimeZone] = useState(clock.timeZone)
+	const [isDigital, setIsDigital] = useState(clock.isDigital)
 
-			<label
-				className="checkbox"
-				htmlFor="digital"
-			>
-				Digital
+	const handleTimeZoneChange = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		const newTimeZone = e.target.value
+		setTimeZone(newTimeZone)
+		onUpdateClock({ ...clock, timeZone: newTimeZone })
+	}
+
+	const handleIsDigitalChange = (
+		e: React.ChangeEvent<HTMLInputElement>
+	) => {
+		const newValue = e.target.checked
+		setIsDigital(newValue)
+		onUpdateClock({ ...clock, isDigital: newValue })
+	}
+
+	return (
+		<div className="clock-form">
+			<label>
+				Time Zone:
+				<select
+					value={timeZone}
+					onChange={handleTimeZoneChange}
+				>
+					{clocksData.map((tz) => (
+						<option
+							key={tz.id}
+							value={tz.timeZone}
+						>
+							{tz.timeZone}
+						</option>
+					))}
+				</select>
 			</label>
-			<input
-				type="checkbox"
-				id="digital"
-				name="digital"
-			/>
-			<button>Delete</button>
+
+			<label>
+				Digital?
+				<input
+					type="checkbox"
+					checked={isDigital}
+					onChange={handleIsDigitalChange}
+				/>
+			</label>
 		</div>
 	)
 }
