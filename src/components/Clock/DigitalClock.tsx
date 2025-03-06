@@ -29,6 +29,7 @@ const DigitalClock: FC<DigitalClockProps> = ({ clock }) => {
 	return (
 		<div className="digital-clock">
 			<div className="city-name">{clock.city}</div>
+			<div className="timeZone">{clock.timeZone}</div>
 			<div className="utc-time">{clock.offsetTime}</div>
 			<div className="digital-time">{formattedTime}</div>
 		</div>

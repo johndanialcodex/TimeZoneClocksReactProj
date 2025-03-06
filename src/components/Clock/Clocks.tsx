@@ -1,15 +1,38 @@
 import { FC } from "react"
 import { Clock } from "../../models/Clock"
 import DigitalClock from "./DigitalClock"
+import ClockForm from "../Settings/ClockForm"
+import "./Clocks.css"
 
-const Clocks: FC<{ clocks: Clock[] }> = ({ clocks }) => {
+interface ClocksProps {
+	clocks: Clock[]
+	updateClock: (newClock: Clock, index: number) => void
+	deleteClock: (indexToDelete: number) => void
+}
+
+const Clocks: FC<ClocksProps> = ({
+	clocks,
+	updateClock,
+	deleteClock,
+}) => {
 	return (
 		<>
-			{clocks.map((clock) => (
-				<DigitalClock
-					key={clock.id}
-					clock={clock}
-				/>
+			{clocks.map((clock, index) => (
+				<div className="clock-form-container"key={clock.id}>
+					{clock.isDigital ? (
+						<DigitalClock clock={clock} />
+					) : (
+						<>Analog Clock</>
+					)}
+					<ClockForm
+						clocks={clocks}
+						clock={clock}
+						onUpdateClock={(newClock: Clock) =>
+							updateClock(newClock, index)
+						}
+						onDeleteClock={() => deleteClock(index)}
+					/>
+				</div>
 			))}
 		</>
 	)

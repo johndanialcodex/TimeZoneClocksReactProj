@@ -1,23 +1,13 @@
 import React, { useState, FC } from "react"
 import { Clock } from "../../models/Clock"
-import { timeZonesList } from "../../utils/clocksData"
-import "./ClockForm.css"
+import clocksData, { timeZonesList } from "../../utils/clocksData"
 
-interface ClockFormProps {
-	clock: Clock
-	onUpdateClock: (newClock: Clock) => void
-	onDeleteClock: () => void
+const AddClockForm: FC<{
+	onAddClock: (newClock: Clock) => void
 	clocks: Clock[]
-}
-
-const ClockForm: FC<ClockFormProps> = ({
-	clock,
-	onUpdateClock,
-	onDeleteClock,
-	clocks,
-}) => {
-	const [timeZone, setTimeZone] = useState(clock.timeZone)
-	const [isDigital, setIsDigital] = useState(clock.isDigital)
+}> = ({ onAddClock, clocks }) => {
+	const [timeZone, setTimeZone] = useState("")
+	const [isDigital, setIsDigital] = useState(false)
 	const unusedTimeZonesList = timeZonesList.filter(
 		(timezone) =>
 			clocks.findIndex((clock) => clock.timeZone === timezone) === -1
@@ -28,7 +18,6 @@ const ClockForm: FC<ClockFormProps> = ({
 	) => {
 		const newTimeZone = e.target.value
 		setTimeZone(newTimeZone)
-		onUpdateClock({ ...clock, timeZone: newTimeZone })
 	}
 
 	const handleIsDigitalChange = (
@@ -36,7 +25,22 @@ const ClockForm: FC<ClockFormProps> = ({
 	) => {
 		const newValue = e.target.checked
 		setIsDigital(newValue)
-		onUpdateClock({ ...clock, isDigital: newValue })
+	}
+
+	const handleAddClock = () => {
+		const clockData = clocksData.find(
+			(clockData) => timeZone === clockData.timeZone
+		)
+		const newClock: Clock = {
+			id: clockData?.id!,
+			timeZone,
+			isDigital,
+			offsetTime: clockData?.offsetTime ?? "",
+			city: clockData?.city ?? "",
+		}
+		onAddClock(newClock)
+		setTimeZone("")
+		setIsDigital(false)
 	}
 
 	return (
@@ -48,11 +52,13 @@ const ClockForm: FC<ClockFormProps> = ({
 					onChange={handleTimeZoneChange}
 				>
 					<option
-						value={timeZone}
+						value=""
+						disabled
 						selected
 					>
-						{timeZone}
+						Select timezone...
 					</option>
+
 					{unusedTimeZonesList.map((timezone) => (
 						<option
 							key={timezone}
@@ -72,9 +78,15 @@ const ClockForm: FC<ClockFormProps> = ({
 					onChange={handleIsDigitalChange}
 				/>
 			</label>
-			<button onClick={onDeleteClock}>Delete</button>
+
+			<button
+				onClick={handleAddClock}
+				disabled={!timeZone.length}
+			>
+				Add Clock
+			</button>
 		</div>
 	)
 }
 
-export default ClockForm
+export default AddClockForm
