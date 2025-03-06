@@ -1,122 +1,157 @@
 .body {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 :root {
-  --clock-size: 80px;
-  --border-size: calc(var(--clock-size) * 0.046);
-  --dot-size: calc(var(--clock-size) * 0.046);
-  --font-size: calc(var(--clock-size) * 0.073);
-  --hand-width: calc(var(--clock-size) * 0.013);
-  --hour-hand-height: calc(var(--clock-size) * 0.22);
-  --minute-hand-height: calc(var(--clock-size) * 0.33);
-  --second-hand-height: calc(var(--clock-size) * 0.4);
-  display: flex;
-  justify-content: center;
+	--clock-size: 80px;
+	--border-size: calc(var(--clock-size) * 0.046);
+	--dot-size: calc(var(--clock-size) * 0.046);
+	--font-size: calc(var(--clock-size) * 0.073);
+	--hand-width: calc(var(--clock-size) * 0.013);
+	--hour-hand-height: calc(var(--clock-size) * 0.22);
+	--minute-hand-height: calc(var(--clock-size) * 0.33);
+	--second-hand-height: calc(var(--clock-size) * 0.4);
+	display: flex;
+	justify-content: center;
 }
 
 /* Clock container */
 .clock {
-  width: var(--clock-size);
-  height: var(--clock-size);
-  background: #ececec;
-  border-radius: 50%;
-  border: var(--border-size) solid #333;
-  position: relative;
-  margin: 0 auto;
-  box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
+	width: var(--clock-size);
+	height: var(--clock-size);
+	background: #ececec;
+	border-radius: 50%;
+	border: var(--border-size) solid #333;
+	position: relative;
+	margin: 0 auto;
+	box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
 }
 
 /* Center dot */
 .dot {
-  width: var(--dot-size);
-  height: var(--dot-size);
-  border-radius: 50%;
-  background: #ccc;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 10;
-  box-shadow: 0 2px 4px -1px black;
+	width: var(--dot-size);
+	height: var(--dot-size);
+	border-radius: 50%;
+	background: #ccc;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 10;
+	box-shadow: 0 2px 4px -1px black;
 }
 
 /* Hour numbers */
 .hour {
-  position: absolute;
-  font-weight: 700;
-  font-size: var(--font-size);
+	position: absolute;
+	font-weight: 700;
+	font-size: var(--font-size);
 }
 
 /* Positioning hours proportionally */
-.twelve { top: 3%; left: 46%; }
-.one { top: 10%; right: 26%; }
-.eleven { top: 10%; left: 26%; }
-.two { top: 25%; right: 10%; }
-.three { right: 3%; top: 46%; }
-.four { right: 10%; top: 67%; }
-.five { right: 25%; top: 80%; }
-.six { bottom: 3%; left: 50%; }
-.seven { left: 27%; top: 82%; }
-.eight { left: 10%; top: 67%; }
-.nine { left: 3%; top: 46%; }
-.ten { top: 25%; left: 10%; }
+.twelve {
+	top: 3%;
+	left: 46%;
+}
+.one {
+	top: 10%;
+	right: 26%;
+}
+.eleven {
+	top: 10%;
+	left: 26%;
+}
+.two {
+	top: 25%;
+	right: 10%;
+}
+.three {
+	right: 3%;
+	top: 46%;
+}
+.four {
+	right: 10%;
+	top: 67%;
+}
+.five {
+	right: 25%;
+	top: 80%;
+}
+.six {
+	bottom: 3%;
+	left: 50%;
+}
+.seven {
+	left: 27%;
+	top: 82%;
+}
+.eight {
+	left: 10%;
+	top: 67%;
+}
+.nine {
+	left: 3%;
+	top: 46%;
+}
+.ten {
+	top: 25%;
+	left: 10%;
+}
 
 /* Clock hands */
 .hour-hand {
-  position: absolute;
-  z-index: 5;
-  width: var(--hand-width);
-  height: var(--hour-hand-height);
-  background-color: #333;
-  top: calc(var(--clock-size) * 0.26);
-  left: 50%;
-  transform-origin: 50% calc(var(--clock-size) * 0.24);
-  margin-left: calc(var(--hand-width) / -2);
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+	position: absolute;
+	z-index: 5;
+	width: var(--hand-width);
+	height: var(--hour-hand-height);
+	background-color: #333;
+	top: calc(var(--clock-size) * 0.26);
+	left: 50%;
+	transform-origin: 50% calc(var(--clock-size) * 0.24);
+	margin-left: calc(var(--hand-width) / -2);
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 
 .minute-hand {
-  position: absolute;
-  z-index: 6;
-  width: var(--hand-width);
-  height: var(--minute-hand-height);
-  background-color: #666;
-  top: calc(var(--clock-size) * 0.15);
-  left: 50%;
-  transform-origin: 50% calc(var(--clock-size) * 0.35);
-  margin-left: calc(var(--hand-width) / -2);
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+	position: absolute;
+	z-index: 6;
+	width: var(--hand-width);
+	height: var(--minute-hand-height);
+	background-color: #666;
+	top: calc(var(--clock-size) * 0.15);
+	left: 50%;
+	transform-origin: 50% calc(var(--clock-size) * 0.35);
+	margin-left: calc(var(--hand-width) / -2);
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 
 .second-hand {
-  position: absolute;
-  z-index: 7;
-  width: calc(var(--hand-width) * 0.5);
-  height: var(--second-hand-height);
-  background-color: red;
-  top: calc(var(--clock-size) * 0.086);
-  left: 50%;
-  transform-origin: 50% calc(var(--clock-size) * 0.42);
-  margin-left: calc(var(--hand-width) * -0.25);
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+	position: absolute;
+	z-index: 7;
+	width: calc(var(--hand-width) * 0.5);
+	height: var(--second-hand-height);
+	background-color: red;
+	top: calc(var(--clock-size) * 0.086);
+	left: 50%;
+	transform-origin: 50% calc(var(--clock-size) * 0.42);
+	margin-left: calc(var(--hand-width) * -0.25);
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 
 /* Slider container */
 .slider-container {
-  margin-top: 20px;
-  text-align: center;
+	margin-top: 20px;
+	text-align: center;
 }
 
 input[type="range"] {
-  width: 100%;
-  max-width: 300px;
-  margin: 10px 0;
+	width: 100%;
+	max-width: 300px;
+	margin: 10px 0;
 }
-

@@ -1,30 +1,36 @@
-import React from 'react';
-import { Clock } from '../../types';
-import ClockForm from './ClockForm';
-import './Settings.css';
+import { FC } from "react"
+import { Clock } from "../../models/Clock"
+import ClockForm from "./ClockForm"
+import "./Settings.css"
 
 interface SettingsProps {
-  clocks: Clock[];
-  updateClock: (id: number, updatedFields: Partial<Clock>) => void;
-  addClock: () => void;
+	clocks: Clock[]
+	updateClock: (newClock: Clock, index: number) => void
+    addClock: () => void
 }
 
-const Settings: React.FC<SettingsProps> = ({ clocks, updateClock, addClock }) => {
-  return (
-    <div className="settings">
-      <h2>Settings</h2>
+const Settings: FC<SettingsProps> = ({
+	clocks,
+	updateClock,
+	addClock,
+}) => {
+	return (
+		<div className="settings">
+			<h2>Settings</h2>
 
-      {clocks.map((clock) => (
-        <ClockForm
-          key={clock.id}
-          clock={clock}
-          updateClock={updateClock}
-        />
-      ))}
+			{clocks.map((clock, index) => (
+				<ClockForm
+					key={clock.id}
+					clock={clock}
+                    onUpdateClock={(newClock: Clock) =>
+                        updateClock(newClock, index)
+                    }
+				/>
+			))}
 
-      <button onClick={addClock}>Add Clock</button>
-    </div>
-  );
-};
+			<button onClick={addClock}>Add Clock</button>
+		</div>
+	)
+}
 
-export default Settings;
+export default Settings
