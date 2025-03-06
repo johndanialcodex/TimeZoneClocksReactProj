@@ -19,7 +19,7 @@ const Settings: FC<SettingsProps> = ({
 }) => {
 	return (
 		<div className="settings-form">
-			<h2 className="settings">Settings</h2>
+			<h2 className="settings">Add A New Time Zone</h2>
 
 			<AddClockForm
 				clocks={clocks}

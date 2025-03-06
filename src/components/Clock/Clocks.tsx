@@ -3,7 +3,7 @@ import { Clock } from "../../models/Clock";
 import DigitalClock from "./DigitalClock";
 import ClockForm from "../Settings/ClockForm";
 import "./Clocks.css";
-import AnalogClock from "../../AnalogClock";
+import AnalogClock from "./AnalogClock";
 
 interface ClocksProps {
 	clocks: Clock[];
@@ -18,13 +18,15 @@ const Clocks: FC<ClocksProps> = ({
 }) => {
 	return (
 		<>
-      		{clocks.map((clock, index) => (
+      		<div className="clocks-wrapper">
+			{clocks.map((clock, index) => (
         		<div className="clock-form-container" key={clock.id}>
           	{clock.isDigital ? (
-            	<DigitalClock clock={clock} />
+            	<DigitalClock clock={clock} isToggled={false} />
           	) : (
             	<AnalogClock clock={clock} />
           	)}
+
           	<ClockForm
            	 	clocks={clocks}
             	clock={clock}
@@ -33,6 +35,7 @@ const Clocks: FC<ClocksProps> = ({
           	/>
         	</div>
     	))}
+		</div>
     	</>
 	);
 };

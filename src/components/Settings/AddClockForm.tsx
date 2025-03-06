@@ -44,9 +44,8 @@ const AddClockForm: FC<{
 	}
 
 	return (
-		<div className="add-clock-form">
+		<div className="add-clock-settings">
 			<label>
-				Time Zone:
 				<select
 					value={timeZone}
 					onChange={handleTimeZoneChange}
@@ -56,7 +55,7 @@ const AddClockForm: FC<{
 						disabled
 						selected
 					>
-						Select timezone...
+						Select a timezone...
 					</option>
 
 					{unusedTimeZonesList.map((timezone) => (

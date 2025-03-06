@@ -39,9 +39,14 @@ const ClockForm: FC<ClockFormProps> = ({
 		onUpdateClock({ ...clock, isDigital: newValue })
 	}
 
+	const [isToggled, setIsToggled] = useState(false)
+
+	const toggle = () => setIsToggled((prev) => !prev)
+
 	return (
-		<div className="add-clock-form">
-			<label>
+		<div>
+		<div className="clock-settings">
+			{/* <label>
 				Time Zone:
 				<select
 					value={timeZone}
@@ -62,9 +67,9 @@ const ClockForm: FC<ClockFormProps> = ({
 						</option>
 					))}
 				</select>
-			</label>
+			</label> */}
 
-			<label>
+			<label className="digital-check">
 				Digital?
 				<input
 					type="checkbox"
@@ -72,7 +77,12 @@ const ClockForm: FC<ClockFormProps> = ({
 					onChange={handleIsDigitalChange}
 				/>
 			</label>
-			<button onClick={onDeleteClock}>Delete</button>
+				<div>
+			<button className="hour-toggle" onClick={toggle}>{isToggled ? "12HR" : "24HR"}</button>
+
+			<button className="delete-btn" onClick={onDeleteClock}>Delete</button>
+			</div>
+		</div>
 		</div>
 	)
 }

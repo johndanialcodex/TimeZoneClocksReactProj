@@ -4,7 +4,7 @@
 }
 
 :root {
-	--clock-size: 80px;
+	--clock-size: 250px;
 	--border-size: calc(var(--clock-size) * 0.046);
 	--dot-size: calc(var(--clock-size) * 0.046);
 	--font-size: calc(var(--clock-size) * 0.073);
@@ -25,7 +25,8 @@
 	border: var(--border-size) solid #333;
 	position: relative;
 	margin: 0 auto;
-	box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
+
+	/* box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8); */
 }
 
 /* Center dot */
@@ -154,4 +155,13 @@ input[type="range"] {
 	width: 100%;
 	max-width: 300px;
 	margin: 10px 0;
+}
+
+.analog-label {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 10px;
+	font-family: "Courier New", Courier, monospace;
 }

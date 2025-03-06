@@ -12,7 +12,7 @@ const ResizeBar = () => {
     <div>
       <input
         type="range"
-        min="80"
+        min="50"
         max="500"
         value={size}
         onChange={(e) => setSize(Number(e.target.value))}
