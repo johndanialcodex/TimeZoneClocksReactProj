@@ -1,16 +1,12 @@
 import { useState, useEffect, FC } from "react"
 import { Clock } from "../../models/Clock"
 import "./DigitalClock.css"
-import ClockForm from "../Settings/ClockForm"
 
 interface DigitalClockProps {
 	clock: Clock
-	isToggled: boolean
+	is12hr: boolean
 }
-const DigitalClock: FC<DigitalClockProps> = ({
-	clock,
-	isToggled,
-}) => {
+const DigitalClock: FC<DigitalClockProps> = ({ clock, is12hr }) => {
 	const [time, setTime] = useState(new Date())
 
 	useEffect(() => {
@@ -25,7 +21,7 @@ const DigitalClock: FC<DigitalClockProps> = ({
 
 	const formattedTime = time.toLocaleTimeString("en-US", {
 		timeZone: clock.timeZone,
-		hour12: !isToggled,
+		hour12: is12hr,
 		hour: "2-digit",
 		minute: "2-digit",
 		second: "2-digit",
@@ -36,7 +32,10 @@ const DigitalClock: FC<DigitalClockProps> = ({
 			<div className="digital-clock">
 				<div className="digital-time">{formattedTime}</div>
 			</div>
-			<div className="city-name">{clock.city}</div>
+			<div className="city-name">
+				{clock.city}
+				{" " + clock.flag}
+			</div>
 			<div className="timeZone">{clock.timeZone}</div>
 			<div className="utc-time">{clock.offsetTime}</div>
 		</>

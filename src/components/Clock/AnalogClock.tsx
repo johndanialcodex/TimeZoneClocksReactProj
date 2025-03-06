@@ -65,7 +65,7 @@ const AnalogClock: FC<AnalogClockProps> = ({ clock }) => {
 				></div>
 			</div>
 			<div className="analog-label">
-				<div className="city-name">{clock.city}</div>
+				<div className="city-name">{clock.city}{" "+clock.flag}</div>
 				<div className="timeZone">{clock.timeZone}</div>
 				<div className="utc-time">{clock.offsetTime}</div>
 			</div>

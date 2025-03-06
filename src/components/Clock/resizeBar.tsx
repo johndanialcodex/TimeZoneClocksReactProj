@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import "./analogClock.css";
+// import { useState, useEffect } from "react";
+// import "./analogClock.css";
 
-const ResizeBar = () => {
-  const [size, setSize] = useState(300);
+// const ResizeBar = () => {
+//   const [size, setSize] = useState(300);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty("--clock-size", `${size}px`);
-  }, [size]);
+//   useEffect(() => {
+//     document.documentElement.style.setProperty("--clock-size", `${size}px`);
+//   }, [size]);
 
-  return (
-    <div>
-      <input
-        type="range"
-        min="50"
-        max="500"
-        value={size}
-        onChange={(e) => setSize(Number(e.target.value))}
-      />
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <input
+//         type="range"
+//         min="50"
+//         max="500"
+//         value={size}
+//         onChange={(e) => setSize(Number(e.target.value))}
+//       />
+//     </div>
+//   );
+// };
 
-export default ResizeBar;
+// export default ResizeBar;
