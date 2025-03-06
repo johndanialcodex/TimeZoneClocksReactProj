@@ -1,34 +1,40 @@
 import { FC } from "react"
 import { Clock } from "../../models/Clock"
-import ClockForm from "./ClockForm"
+// import ClockForm from "./ClockForm"
 import "./Settings.css"
+import AddClockForm from "./AddClockForm"
 
 interface SettingsProps {
 	clocks: Clock[]
-	updateClock: (newClock: Clock, index: number) => void
-    addClock: () => void
+	addClock: (newClock: Clock) => void
+	// updateClock: (newClock: Clock, index: number) => void
+	// deleteClock: (indexToDelete: number) => void
 }
 
 const Settings: FC<SettingsProps> = ({
 	clocks,
-	updateClock,
 	addClock,
+	// updateClock,
+	// deleteClock
 }) => {
 	return (
-		<div className="settings">
-			<h2>Settings</h2>
+		<div className="settings-form">
+			<h2 className="settings">Settings</h2>
 
-			{clocks.map((clock, index) => (
+			<AddClockForm
+				clocks={clocks}
+				onAddClock={addClock}
+			/>
+			{/* {clocks.map((clock, index) => (
 				<ClockForm
 					key={clock.id}
 					clock={clock}
                     onUpdateClock={(newClock: Clock) =>
                         updateClock(newClock, index)
                     }
+					onDeleteClock={() => deleteClock(index)}
 				/>
-			))}
-
-			<button onClick={addClock}>Add Clock</button>
+			))} */}
 		</div>
 	)
 }

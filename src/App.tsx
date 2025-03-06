@@ -4,35 +4,46 @@ import "./App.css"
 import clocksData from "./utils/clocksData"
 import Clocks from "./components/Clock/Clocks"
 import Settings from "./components/Settings/Settings"
-import AnalogClock from "./AnalogClock"
-import ResizeBar from "./resizeBar"
+// import AnalogClock from "./AnalogClock"
+// import ResizeBar from "./resizeBar"
 
 function App() {
-	const [clocks, setClocks] = useState<Clock[]>(clocksData)
+	const [clocks, setClocks] = useState<Clock[]>([])
 
-	const addClock = () => {}
+	const addClock = (newClock: Clock) => {
+		setClocks([...clocks, newClock])
+	}
 
 	const updateClock = (newClock: Clock, index: number) => {
 		const newClocks = [...clocks]
-		newClocks[index] = newClock
+		const newClockData = clocksData.find(
+			(clockData) => newClock.timeZone === clockData.timeZone
+		)
+		newClocks[index] = {
+			...newClockData!,
+			isDigital: newClock.isDigital,
+		}
 		setClocks(newClocks)
 	}
 
-	const deleteClock = (id: number) => {
-		setClocks(clocks.filter((clock) => clock.id !== id))
+	const deleteClock = (indexToDelete: number) => {
+		setClocks(clocks.filter((_, index) => index !== indexToDelete))
 	}
 
 	return (
 		<>
-			<AnalogClock />
-			<ResizeBar />
+		<h1 className="header">World Clocks</h1>
+			{/* <AnalogClock /> */}
+			{/* <ResizeBar /> */}
 			<Settings
 				clocks={clocks}
-				updateClock={updateClock}
 				addClock={addClock}
 			/>
-			<Clocks clocks={clocks} />
-			{/* <DigitalClock /> */}
+			<Clocks
+				clocks={clocks}
+				updateClock={updateClock}
+				deleteClock={deleteClock}
+			/>
 		</>
 	)
 }
