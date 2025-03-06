@@ -4,8 +4,6 @@ import "./App.css"
 import clocksData from "./utils/clocksData"
 import Clocks from "./components/Clock/Clocks"
 import Settings from "./components/Settings/Settings"
-// import AnalogClock from "./AnalogClock"
-// import ResizeBar from "./resizeBar"
 
 function App() {
 	const [clocks, setClocks] = useState<Clock[]>([])
@@ -32,9 +30,7 @@ function App() {
 
 	return (
 		<>
-		<h1 className="header">World Clocks</h1>
-			{/* <AnalogClock /> */}
-			{/* <ResizeBar /> */}
+			<h1 className="header">World Clocks 🌍</h1>
 			<Settings
 				clocks={clocks}
 				addClock={addClock}

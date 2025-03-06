@@ -1,14 +1,12 @@
-import { FC } from "react";
-import { Clock } from "../../models/Clock";
-import DigitalClock from "./DigitalClock";
-import ClockForm from "../Settings/ClockForm";
-import "./Clocks.css";
-import AnalogClock from "../../AnalogClock";
+import { FC } from "react"
+import { Clock } from "../../models/Clock"
+import "./Clocks.css"
+import ClockDisplay from "./ClockDisplay"
 
 interface ClocksProps {
-	clocks: Clock[];
-	updateClock: (newClock: Clock, index: number) => void;
- 	deleteClock: (indexToDelete: number) => void;
+	clocks: Clock[]
+	updateClock: (newClock: Clock, index: number) => void
+	deleteClock: (indexToDelete: number) => void
 }
 
 const Clocks: FC<ClocksProps> = ({
@@ -18,24 +16,20 @@ const Clocks: FC<ClocksProps> = ({
 }) => {
 	return (
 		<>
-      		{clocks.map((clock, index) => (
-        		<div className="clock-form-container" key={clock.id}>
-          	{clock.isDigital ? (
-            	<DigitalClock clock={clock} />
-          	) : (
-            	<AnalogClock clock={clock} />
-          	)}
-          	<ClockForm
-           	 	clocks={clocks}
-            	clock={clock}
-            	onUpdateClock={(newClock: Clock) => updateClock(newClock, index)}
-            	onDeleteClock={() => deleteClock(index)}
-          	/>
-        	</div>
-    	))}
-    	</>
-	);
-};
+			<div className="clocks-wrapper">
+				{clocks.map((clock, index) => (
+					<ClockDisplay
+						key={clock.id}
+						clock={clock}
+						onUpdateClock={(newClock: Clock) =>
+							updateClock(newClock, index)
+						}
+						onDeleteClock={() => deleteClock(index)}
+					/>
+				))}
+			</div>
+		</>
+	)
+}
 
-export default Clocks;
-
+export default Clocks

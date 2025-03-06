@@ -1,23 +1,23 @@
 .digital-clock {
-    border: 2px solid black;
-    padding: 5px 0px;
-    width: 375px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-    margin-bottom: 10px;
+	border: 10px solid #333;
+	background-color: #ececec;
+	padding: 5px 0px;
+	width: 240px;
+	height: 240px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Courier New", Courier, monospace;
+	margin-bottom: 10px;
 }
 
 .city-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.utc-time {
-
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .digital-time {
-    font-weight: bold;
+	font-weight: bold;
+	font-size: 35px;
+	padding: 0px 4px;
 }

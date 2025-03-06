@@ -4,4 +4,5 @@ export interface Clock {
     isDigital: boolean
     offsetTime: string
     city: string
+    flag: string
 }

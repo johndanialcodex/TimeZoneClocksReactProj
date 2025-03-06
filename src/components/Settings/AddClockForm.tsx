@@ -8,9 +8,9 @@ const AddClockForm: FC<{
 }> = ({ onAddClock, clocks }) => {
 	const [timeZone, setTimeZone] = useState("")
 	const [isDigital, setIsDigital] = useState(false)
+
 	const unusedTimeZonesList = timeZonesList.filter(
-		(timezone) =>
-			clocks.findIndex((clock) => clock.timeZone === timezone) === -1
+		(timezone) => !clocks.find((clock) => clock.timeZone === timezone)
 	)
 
 	const handleTimeZoneChange = (
@@ -31,12 +31,15 @@ const AddClockForm: FC<{
 		const clockData = clocksData.find(
 			(clockData) => timeZone === clockData.timeZone
 		)
+		if (!clockData) throw new Error("timeZone not found")
+
 		const newClock: Clock = {
-			id: clockData?.id!,
+			id: clockData.id!,
 			timeZone,
 			isDigital,
-			offsetTime: clockData?.offsetTime ?? "",
-			city: clockData?.city ?? "",
+			offsetTime: clockData.offsetTime,
+			city: clockData.city,
+			flag: clockData.flag,
 		}
 		onAddClock(newClock)
 		setTimeZone("")
@@ -44,10 +47,10 @@ const AddClockForm: FC<{
 	}
 
 	return (
-		<div className="add-clock-form">
+		<div className="add-clock-settings">
 			<label>
-				Time Zone:
 				<select
+					className="timezone-dropdown"
 					value={timeZone}
 					onChange={handleTimeZoneChange}
 				>
@@ -56,7 +59,7 @@ const AddClockForm: FC<{
 						disabled
 						selected
 					>
-						Select timezone...
+						Select a timezone...
 					</option>
 
 					{unusedTimeZonesList.map((timezone) => (
@@ -70,7 +73,7 @@ const AddClockForm: FC<{
 				</select>
 			</label>
 
-			<label>
+			<label className="add-digital-check">
 				Digital?
 				<input
 					type="checkbox"
@@ -80,10 +83,11 @@ const AddClockForm: FC<{
 			</label>
 
 			<button
+				className="add-btn"
 				onClick={handleAddClock}
 				disabled={!timeZone.length}
 			>
-				Add Clock
+				ADD CLOCK
 			</button>
 		</div>
 	)

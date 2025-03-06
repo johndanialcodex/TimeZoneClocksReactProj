@@ -1,6 +1,49 @@
-.add-clock-form {
-    display: flex;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    
+.add-clock-settings {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Courier New", Courier, monospace;
+	padding-top: 10px;
+}
+
+.clock-settings {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Courier New", Courier, monospace;
+	padding-top: 10px;
+}
+
+.hour-toggle {
+	margin-right: 10px;
+	font-family: "Courier New", Courier, monospace;
+	padding: 2px 10px;
+	font-size: 15px;
+}
+
+.delete-btn {
+	font-family: "Courier New", Courier, monospace;
+	padding: 2px 10px;
+	font-size: 15px;
+	margin-top: 5px;
+}
+
+.add-btn {
+	font-family: "Courier New", Courier, monospace;
+	padding: 2px 10px;
+	font-size: 15px;
+}
+
+.timezone-dropdown {
+	margin-right: 6px;
+}
+
+.add-digital-check {
+	margin-right: 6px;
+	display: flex;
+}
+
+.checkbox {
+	display: flex;
 }
